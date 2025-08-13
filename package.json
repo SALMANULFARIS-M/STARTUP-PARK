@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:startup-park": "node dist/startup-park/server/server.mjs"
+    "serve:ssr:startup-park": "node dist/startup-park/server/server.mjs",
+    "build:ssr": "ng build && npm run serve:ssr:startup-park"
+
   },
   "private": true,
   "dependencies": {
