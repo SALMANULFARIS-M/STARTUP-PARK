@@ -1,25 +1,40 @@
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UtilsService } from './shared/services/utils.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements  OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   days = 0;
   hours = 0;
   minutes = 0;
   seconds = 0;
   private timerInterval: any;
+  isBrowserLoaded = false;
+  contactForm!: FormGroup;
+  isSubmitting = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private utils: UtilsService, private fb: FormBuilder) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.startCountdown();
+      this.isBrowserLoaded = true;
+      this.utils.setupIntersectionObserver();
+      this.contactForm = this.fb.group({
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        mobile: ['', Validators.required],
+        company: ['', Validators.required],
+        message: ['']
+      });
+
     }
   }
 
@@ -46,5 +61,24 @@ export class AppComponent implements  OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       clearInterval(this.timerInterval);
     }
+  }
+  scrollTo(target: string): void {
+    this.utils.smoothScrollTo(target);
+  }
+
+  onSubmit(): void {
+    if (this.contactForm.invalid) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    // Simulate form submission
+    setTimeout(() => {
+      alert('Thank you for your interest! We\'ll contact you within 24 hours to schedule your strategy session.');
+      this.contactForm.reset();
+      this.isSubmitting = false;
+    }, 2000);
   }
 }

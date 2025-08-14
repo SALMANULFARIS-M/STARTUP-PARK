@@ -1,10 +1,22 @@
 @keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-gradient-x {
   background-size: 200% 200%;
   animation: gradient-x 4s ease infinite;
+}
+
+.gradient-blur {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  filter: blur(100px);
+  opacity: 0.7;
 }
