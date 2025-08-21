@@ -5,6 +5,7 @@ import { UtilsService } from './shared/services/utils.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ContactService } from './shared/services/contact.service';
+import { AnalyticsService } from './shared/services/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,13 @@ export class AppComponent implements OnInit, OnDestroy {
   isSubmitting = false;
 
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private utils: UtilsService, private fb: FormBuilder, private contactService: ContactService) { }
+  constructor(private analytics: AnalyticsService,
+    @Inject(PLATFORM_ID) private platformId: object,
+    private utils: UtilsService, private fb: FormBuilder,
+    private contactService: ContactService) { }
 
   ngOnInit() {
+    this.analytics.init();
     if (isPlatformBrowser(this.platformId)) {
       this.startCountdown();
       this.isBrowserLoaded = true;
