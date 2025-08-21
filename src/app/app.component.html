@@ -405,88 +405,10 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <!-- <section class="py-24 px-6 bg-white"
-      style="
-      background-color: #ffffff;
-      background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'8\' height=\'8\' viewBox=\'0 0 8 8\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\'%3E%3Cpath fill-rule=\'evenodd\' d=\'M0 0h4v4H0V0zm4 4h4v4H4V4z\'/%3E%3C/g%3E%3C/svg%3E');
-      background-repeat: repeat;
-      background-size: auto;
-    ">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Success Stories
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Hear from entrepreneurs who've transformed their startups into
-          industry leaders
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div
-          class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-lg border border-blue-100"
-        >
-          <div class="flex items-start mb-6">
-            <div
-              class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl"
-            >
-              RK
-            </div>
-            <div class="ml-4">
-              <h4 class="font-bold text-gray-900 text-lg">Ravi Kumar</h4>
-              <p class="text-gray-600">Founder & CEO, TechNova</p>
-              <div class="flex text-yellow-400 mt-1">⭐⭐⭐⭐⭐</div>
-            </div>
-          </div>
-          <blockquote class="text-gray-700 leading-relaxed italic">
-            "Startup Park didn't just provide resources – they became our
-            strategic partners. The mentorship quality and investor network
-            helped us close our Series A within 6 months. The ROI on our
-            investment here has been exceptional."
-          </blockquote>
-        </div>
-
-        <div
-          class="bg-gradient-to-br from-green-50 to-blue-50 rounded-3xl p-8 shadow-lg border border-green-100"
-        >
-          <div class="flex items-start mb-6">
-            <div
-              class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl"
-            >
-              AS
-            </div>
-            <div class="ml-4">
-              <h4 class="font-bold text-gray-900 text-lg">Aditi Sharma</h4>
-              <p class="text-gray-600">Co-founder, GreenByte Solutions</p>
-              <div class="flex text-yellow-400 mt-1">⭐⭐⭐⭐⭐</div>
-            </div>
-          </div>
-          <blockquote class="text-gray-700 leading-relaxed italic">
-            "The ecosystem here is unmatched. From world-class workspace to
-            strategic partnerships – everything contributed to our 300% growth
-            last year. We've built relationships that will last a lifetime."
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
   <!-- Contact Section -->
   <section
     class="py-24 px-6 bg-gradient-to-r from-[#2a3f80] to-cyan-700 relative overflow-hidden"
   >
-    <!-- Background Elements -->
-    <div class="absolute inset-0">
-      <div
-        class="gradient-blur absolute top-20 left-20 w-72 h-72 rounded-full"
-      ></div>
-      <div
-        class="gradient-blur absolute bottom-20 right-20 w-96 h-96 rounded-full"
-      ></div>
-    </div>
-
     <div class="relative z-10 max-w-4xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -509,72 +431,146 @@
           id="contactForm"
         >
           <div class="grid md:grid-cols-2 gap-6">
+            <!-- Full Name -->
             <div>
-              <label class="block text-white font-medium mb-3">Full Name</label>
+              <label class="block text-white font-medium mb-1">
+                Full Name <span class="text-red-400">*</span>
+              </label>
               <input
                 formControlName="name"
                 type="text"
-                name="name"
                 placeholder="Enter your full name"
-                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 backdrop-blur-lg"
-                required
+                class="w-full px-6 py-4 bg-white/10 border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50"
+                [ngClass]="{
+                  'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                    contactForm.get('name')?.invalid &&
+                    (contactForm.get('name')?.touched || contactForm.touched)
+                }"
               />
+              <p
+                *ngIf="
+                  contactForm.get('name')?.touched &&
+                  contactForm.get('name')?.hasError('required')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Full name is required
+              </p>
             </div>
 
+            <!-- Phone -->
             <div>
-              <label class="block text-white font-medium mb-3"
-                >Phone Number</label
-              >
+              <label class="block text-white font-medium mb-1">
+                Phone Number <span class="text-red-400">*</span>
+              </label>
               <input
                 formControlName="mobile"
-                type="tel"
-                name="mobile"
+                type="text"
+                maxlength="10"
                 placeholder="Enter your phone number"
-                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 backdrop-blur-lg"
-                required
+                class="w-full px-6 py-4 bg-white/10 border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50"
+                [ngClass]="{
+                  'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                    contactForm.get('mobile')?.invalid &&
+                    (contactForm.get('mobile')?.touched || contactForm.touched)
+                }"
               />
+              <p
+                *ngIf="
+                  contactForm.get('mobile')?.touched &&
+                  contactForm.get('mobile')?.hasError('required')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Phone number is required
+              </p>
+              <p
+                *ngIf="
+                  contactForm.get('mobile')?.touched &&
+                  contactForm.get('mobile')?.hasError('pattern')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Must be a valid 10-digit number
+              </p>
             </div>
           </div>
 
           <div class="grid md:grid-cols-2 gap-6">
+            <!-- Email -->
             <div>
-              <label class="block text-white font-medium mb-3"
-                >Email Address</label
-              >
+              <label class="block text-white font-medium mb-1">
+                Email Address <span class="text-red-400">*</span>
+              </label>
               <input
-                formControlName="company"
+                formControlName="email"
                 type="email"
-                name="email"
                 placeholder="Enter your email address"
-                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 backdrop-blur-lg"
-                required
+                class="w-full px-6 py-4 bg-white/10 border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50"
+                [ngClass]="{
+                  'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                    contactForm.get('email')?.invalid &&
+                    (contactForm.get('email')?.touched || contactForm.touched)
+                }"
               />
+              <p
+                *ngIf="
+                  contactForm.get('email')?.touched &&
+                  contactForm.get('email')?.hasError('required')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Email is required
+              </p>
+              <p
+                *ngIf="
+                  contactForm.get('email')?.touched &&
+                  contactForm.get('email')?.hasError('email')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Enter a valid email address
+              </p>
             </div>
 
+            <!-- Company -->
             <div>
-              <label class="block text-white font-medium mb-3"
-                >Company Name</label
-              >
+              <label class="block text-white font-medium mb-1">
+                Company Name <span class="text-red-400">*</span>
+              </label>
               <input
-                formControlName="message"
+                formControlName="company"
                 type="text"
-                name="company"
                 placeholder="Enter your company name"
-                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 backdrop-blur-lg"
-                required
+                class="w-full px-6 py-4 bg-white/10 border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50"
+                [ngClass]="{
+                  'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                    contactForm.get('company')?.invalid &&
+                    (contactForm.get('company')?.touched || contactForm.touched)
+                }"
               />
+              <p
+                *ngIf="
+                  contactForm.get('company')?.touched &&
+                  contactForm.get('company')?.hasError('required')
+                "
+                class="text-red-400 text-sm mt-1"
+              >
+                Company name is required
+              </p>
             </div>
           </div>
 
+          <!-- Message -->
           <div>
-            <label class="block text-white font-medium mb-3"
-              >Tell us about your startup</label
-            >
+            <label class="block text-white font-medium mb-1">
+              Tell us about your startup
+            </label>
             <textarea
-              name="message"
-              placeholder="Briefly describe your startup, current stage, and how we can help you succeed..."
+              formControlName="message"
               rows="4"
-              class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 backdrop-blur-lg resize-none"
+              placeholder="Briefly describe your startup..."
+              class="w-full px-6 py-4 bg-white/10 border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 resize-none"
             ></textarea>
           </div>
 

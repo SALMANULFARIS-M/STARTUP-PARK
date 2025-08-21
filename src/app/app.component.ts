@@ -3,6 +3,8 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core
 import { RouterOutlet } from '@angular/router';
 import { UtilsService } from './shared/services/utils.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ContactService } from './shared/services/contact.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent implements OnInit, OnDestroy {
   days = 0;
   hours = 0;
@@ -20,7 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
   contactForm!: FormGroup;
   isSubmitting = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private utils: UtilsService, private fb: FormBuilder) {}
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private utils: UtilsService, private fb: FormBuilder, private contactService: ContactService) { }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -30,7 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
       this.contactForm = this.fb.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        mobile: ['', Validators.required],
+        mobile: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[0-9]{10}$/) // ✅ exactly 10 digits
+          ],
+        ],
         company: ['', Validators.required],
         message: ['']
       });
@@ -68,17 +78,23 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.contactForm.invalid) {
-      alert('Please fill in all required fields.');
+      this.contactForm.markAllAsTouched();
       return;
     }
 
     this.isSubmitting = true;
 
-    // Simulate form submission
-    setTimeout(() => {
-      alert('Thank you for your interest! We\'ll contact you within 24 hours to schedule your strategy session.');
-      this.contactForm.reset();
-      this.isSubmitting = false;
-    }, 2000);
+    this.contactService.submitContactForm(this.contactForm.value).subscribe({
+      next: () => {
+        alert('✅ Thank you! Your response has been saved.');
+        this.contactForm.reset();
+        this.isSubmitting = false;
+      },
+      error: (err) => {
+        console.error("Error submitting form", err);
+        alert('⚠️ Something went wrong. Please try again.');
+        this.isSubmitting = false;
+      }
+    });
   }
 }

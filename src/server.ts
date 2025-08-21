@@ -13,7 +13,7 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
-
+app.use(express.json());
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
@@ -48,6 +48,29 @@ app.use('/**', (req, res, next) => {
     )
     .catch(next);
 });
+
+app.post('/api/contact', async (req, res) => {
+  try {
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbyxSQ_dM4VZJdE4JYh1FEcz8zE81PnpkvKU9g6tbKvYSUl3KmKOTf2gstBSBrMUKz2ptg/exec';
+
+    const response = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(req.body)
+    });
+
+    // Google Apps Script returns a redirect, so we need to handle it
+    const result = await response.text();
+
+    res.json({ status: 'success', message: 'Data saved successfully' });
+  } catch (error) {
+    console.error('Proxy error:', error);
+    res.status(500).json({ status: 'error', message: 'Something went wrong' });
+  }
+});
+
 
 /**
  * Start the server if this module is the main entry point.
