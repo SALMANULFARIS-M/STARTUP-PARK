@@ -6,10 +6,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { ContactService } from './shared/services/contact.service';
 import { AnalyticsService } from './shared/services/analytics.service';
+import { ToastService } from './shared/services/toast.service';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,ToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -28,7 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private analytics: AnalyticsService,
     @Inject(PLATFORM_ID) private platformId: object,
     private utils: UtilsService, private fb: FormBuilder,
-    private contactService: ContactService) { }
+    private contactService: ContactService,
+    private toast: ToastService) { }
 
   ngOnInit() {
     this.analytics.init();
@@ -82,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -91,13 +95,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.contactService.submitContactForm(this.contactForm.value).subscribe({
       next: () => {
-        alert('✅ Thank you! Your response has been saved.');
+        this.toast.showSuccess('Thank you! Your response has been saved.');
         this.contactForm.reset();
         this.isSubmitting = false;
       },
       error: (err) => {
         console.error("Error submitting form", err);
-        alert('⚠️ Something went wrong. Please try again.');
+        this.toast.showError('Something went wrong. Please try again.');
         this.isSubmitting = false;
       }
     });
