@@ -27,6 +27,7 @@ app.post('/api/contact', async (req, res) => {
     });
 
     const result = await response.text();  // read body only once
+    console.log(result);
 
     res.json({ status: 'success', message: 'Data saved successfully', result });
   } catch (error) {
