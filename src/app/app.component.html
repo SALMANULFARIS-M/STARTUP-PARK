@@ -689,12 +689,12 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white text-center py-8">
-    <div class="max-w-4xl mx-auto space-y-4">
+<footer class="bg-black text-white py-10">
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <!-- Top Row: Contact + Social -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
       <!-- Contact Info -->
-      <div
-        class="flex flex-col md:flex-row items-center justify-center gap-6 text-gray-300"
-      >
+      <div class="flex flex-col sm:flex-row items-center gap-6 text-gray-300">
         <!-- Location -->
         <div class="flex items-center gap-2">
           <svg
@@ -708,15 +708,14 @@
               stroke-linejoin="round"
               stroke-width="2"
               d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            ></path>
+            />
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            ></path>
+            />
           </svg>
-
           <span>Bengaluru, Karnataka, India</span>
         </div>
 
@@ -736,38 +735,88 @@
               d="M16 12H8m8 0l-4-4m4 4l-4 4m0-8v8"
             />
           </svg>
-          <a href="mailto:contact@thestartuppark.com" class="hover:underline"
-            >contact&#64;thestartuppark.com</a
+          <a
+            href="mailto:contact@thestartuppark.com"
+            class="hover:underline"
           >
+            contact&#64;thestartuppark.com
+          </a>
         </div>
       </div>
 
-      <!-- Divider -->
-      <div class="border-t border-gray-700"></div>
-
-      <!-- Footer Text -->
-      <div class="pt-8">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2025 Startup Park. All rights reserved.
-          </p>
-          <div class="flex items-center text-gray-400 text-sm">
-            <span>Crafted with</span>
-            <img
-              src="https://www.incubenation.com/assets/incubenation-DP-3-DClrSOz0.png"
-              class="w-3 h-3 mx-2"
+      <!-- Social Icons -->
+      <div class="flex justify-center md:justify-end gap-6 text-gray-400">
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/thestartuppark?igsh=MXduOHZzNnIybThraA=="
+          target="_blank"
+          class="hover:text-pink-500 transition-colors"
+          aria-label="Instagram"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M7.5 2h9A5.5 5.5 0 0122 7.5v9a5.5 5.5 0 01-5.5 5.5h-9A5.5 5.5 0 012 16.5v-9A5.5 5.5 0 017.5 2zm0 2A3.5 3.5 0 004 7.5v9A3.5 3.5 0 007.5 20h9a3.5 3.5 0 003.5-3.5v-9A3.5 3.5 0 0016.5 4h-9zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm5-2a1 1 0 110 2 1 1 0 010-2z"
             />
-            <span>by</span>
-            <a
-              href="#"
-              class="text-blue-400 hover:text-blue-300 ml-1 transition-colors duration-300"
-              >Incubenation</a
-            >
-          </div>
-        </div>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com/share/179L9689EJ/"
+          target="_blank"
+          class="hover:text-blue-500 transition-colors"
+          aria-label="Facebook"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3h-1.8v7A10 10 0 0022 12z"
+            />
+          </svg>
+        </a>
+
+        <!-- X (Twitter) -->
+        <a
+          href="https://x.com/startup_park"
+          target="_blank"
+          class="hover:text-white transition-colors"
+          aria-label="X"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.7 3H21l-7.3 8.3L22 21h-7.2l-5.2-6.6L3.9 21H1l7.9-9-7.6-9h7.3l4.7 6L17.7 3z"
+            />
+          </svg>
+        </a>
       </div>
     </div>
-  </footer>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-700 mt-8"></div>
+
+    <!-- Bottom Row: Credits -->
+    <div class="flex flex-col md:flex-row justify-between items-center pt-6">
+      <p class="text-gray-400 text-sm mb-4 md:mb-0">
+        © 2025 Startup Park. All rights reserved.
+      </p>
+      <div class="flex items-center text-gray-400 text-sm">
+        <span>Crafted with</span>
+        <img
+          src="https://www.incubenation.com/assets/incubenation-DP-3-DClrSOz0.png"
+          class="w-4 h-4 mx-2"
+          alt="Incubenation Logo"
+        />
+        <span>by</span>
+        <a
+          href="#"
+          class="text-blue-400 hover:text-blue-300 ml-1 transition-colors duration-300"
+        >
+          Incubenation
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </main>
 
 <router-outlet />
