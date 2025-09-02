@@ -11,7 +11,7 @@ import { ToastComponent } from './shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,ToastComponent],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule, ToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.analytics.init();
     if (isPlatformBrowser(this.platformId)) {
+
       this.startCountdown();
       this.isBrowserLoaded = true;
       this.utils.setupIntersectionObserver();
@@ -56,8 +57,18 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  scrollToSection(sectionId: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+
   startCountdown() {
-const launchDate = new Date('2025-10-03T00:00:00').getTime();
+    const launchDate = new Date('2025-10-03T00:00:00').getTime();
 
     this.timerInterval = setInterval(() => {
       const now = new Date().getTime();
