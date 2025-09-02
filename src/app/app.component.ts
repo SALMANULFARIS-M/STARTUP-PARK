@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   startCountdown() {
-    const launchDate = new Date('2025-09-15T00:00:00').getTime();
+const launchDate = new Date('2025-10-03T00:00:00').getTime();
 
     this.timerInterval = setInterval(() => {
       const now = new Date().getTime();
