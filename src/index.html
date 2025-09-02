@@ -20,8 +20,30 @@
 
       gtag("config", "G-VKL382ZTGF");
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-17494428385"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-17494428385");
+    </script>
   </head>
   <body>
     <app-root></app-root>
+
+    <script>
+      if (window.location.pathname === "/") {
+        gtag("event", "conversion", {
+          send_to: "AW-17494428385/WaKkCLupvZIbEOGV_5VB",
+        });
+      }
+    </script>
   </body>
 </html>

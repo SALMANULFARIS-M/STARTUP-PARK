@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@import "tailwindcss/preflight";
+
+/* body {
+  background-color: #E9F3F4;
+  color: #1D1E20;
+  font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+} */
+
+/* body {
+  @apply bg-secondary text-neutral font-sans;
+} */

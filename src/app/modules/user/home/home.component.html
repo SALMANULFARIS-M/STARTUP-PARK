@@ -1,45 +1,38 @@
-<!-- Hero Section -->
-<section class="hero relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center py-28 px-6">
-  <h1 class="text-5xl font-extrabold mb-4 animate-fade-in">India’s Launchpad for Founders</h1>
-  <p class="text-xl max-w-3xl mx-auto mb-6 animate-fade-in-delay">Innovate. Accelerate. Succeed.</p>
-  <button class="px-8 py-3 rounded-2xl bg-white text-blue-700 font-semibold hover:bg-gray-100 transition-transform transform hover:scale-105 animate-bounce">Apply Now</button>
-</section>
-
-<!-- Why Startup Park -->
-<section class="py-20 px-6 md:px-20 bg-white">
-  <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Why Founders Choose Us</h2>
-  <div class="grid md:grid-cols-4 gap-10">
-    <div class="card bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2 animate-fade-in-delay" *ngFor="let item of ecosystem">
-      <h3 class="text-xl font-semibold mb-2">{{item}}</h3>
-      <p class="text-gray-600">Explore the benefits of {{item}} in our startup ecosystem.</p>
+<div class="min-h-screen flex flex-col bg-secondary">
+  <!-- Navbar -->
+  <header class="flex justify-between items-center p-6 bg-dark text-white">
+    <div class="text-xl font-bold text-primary">Finpay</div>
+    <nav class="flex gap-6">
+      <a routerLink="/" class="hover:text-primary">Home</a>
+      <a routerLink="/products" class="hover:text-primary">Products</a>
+      <a routerLink="/pricing" class="hover:text-primary">Pricing</a>
+      <a routerLink="/learn" class="hover:text-primary">Learn</a>
+    </nav>
+    <div class="flex gap-3">
+      <button class="px-4 py-2 rounded-lg bg-neutral text-white">Login</button>
+      <button class="px-4 py-2 rounded-lg bg-primary text-white">Sign Up</button>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- Stats / Impact -->
-<section class="py-20 bg-gray-100 text-center">
-  <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
-    <div *ngFor="let stat of stats" class="animate-count-up">
-      <h3 class="text-4xl font-bold text-blue-600">{{stat.value}}</h3>
-      <p class="text-gray-700 mt-2">{{stat.label}}</p>
+  <!-- Hero -->
+  <main class="flex-1 flex items-center justify-center text-center p-12">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl font-bold text-dark leading-tight">
+        Get paid early, save automatically,<br/> all your pay.
+      </h1>
+      <p class="text-lg text-neutral mt-6">
+        Supports small businesses with simple invoicing, integrations, and cash flow management tools.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <input type="email" placeholder="Your business email"
+               class="px-4 py-3 rounded-l-lg border border-neutral w-72" />
+        <button class="px-6 py-3 bg-primary text-white rounded-r-lg">Get Started</button>
+      </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<!-- Spotlight Event -->
-<section class="py-20 px-6 md:px-20 bg-white text-center animate-fade-in">
-  <h2 class="text-3xl font-bold mb-6">{{spotlightEvents[0].title}}</h2>
-  <p class="text-gray-700 max-w-3xl mx-auto mb-6">{{spotlightEvents[0].desc}}</p>
-  <button class="px-8 py-3 rounded-2xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105">Join Now</button>
-</section>
-
-<!-- CTA Section -->
-<section class="py-20 bg-indigo-700 text-white text-center animate-fade-in">
-  <h2 class="text-3xl font-bold mb-6">Ready to Build Your Dream Startup?</h2>
-  <p class="max-w-3xl mx-auto mb-6">Apply to our incubator, join our founder-first community, or pitch for funding this quarter.</p>
-  <div class="flex flex-col md:flex-row justify-center gap-4">
-    <button class="px-6 py-3 rounded-2xl bg-white text-indigo-700 font-semibold hover:bg-gray-100 transition">Apply Now</button>
-    <button class="px-6 py-3 rounded-2xl bg-gray-200 text-indigo-700 font-semibold hover:bg-gray-300 transition">Book a Tour</button>
-    <button class="px-6 py-3 rounded-2xl bg-gray-200 text-indigo-700 font-semibold hover:bg-gray-300 transition">Talk to a Mentor</button>
-  </div>
-</section>
+  <!-- Footer -->
+  <footer class="bg-dark text-secondary text-center py-6">
+    © 2025 Finpay. All rights reserved.
+  </footer>
+</div>
