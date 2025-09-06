@@ -3,7 +3,7 @@
 <!-- Hero Section -->
 <section
   class="relative text-center py-32 bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden"
->
+  >
   <!-- Background Glow -->
   <div
     class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(42,142,158,0.25),transparent_70%)]"
@@ -41,75 +41,77 @@
       src="https://pbs.twimg.com/media/Gyz2ldabQAAo85C.jpg"
       alt="Founders and innovation"
       class="rounded-2xl shadow-2xl border border-blue-500/20"
-    />
-    <!-- Accent glow -->
-    <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-blue-600/20 to-transparent blur-xl"></div>
-  </div>
-</section>
-
-<!-- Mission & Vision -->
-<section class="py-24 px-6 md:px-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-  <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-    <div class="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20 transition">
-      <h3 class="text-2xl font-semibold text-blue-500 mb-4">Mission</h3>
-      <p class="text-gray-300 leading-relaxed">
-        Power bold ideas into reality through a builder-centric startup
-        incubator and accelerator ecosystem. We empower founders with
-        resources, mentorship, and networks to thrive in competitive markets.
-      </p>
-    </div>
-    <div class="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20 transition">
-      <h3 class="text-2xl font-semibold text-blue-500 mb-4">Vision</h3>
-      <p class="text-gray-300 leading-relaxed">
-        Put India at the center of global entrepreneurship by turning raw
-        ideas into world-class ventures. Our vision is to inspire founders to
-        dream big, execute fast, and build scalable businesses that change the world.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Leadership & Team -->
-<section class="py-24 px-6 md:px-20 bg-black text-white">
-  <h2 class="text-3xl font-bold text-blue-500 mb-12 text-center">
-    Leadership & Team
-  </h2>
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-    <div
-      *ngFor="let member of team"
-      class="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/20 shadow-lg hover:shadow-xl hover:scale-105 transform transition"
-    >
-      <img
-        [src]="member.photo"
-        alt="{{ member.name }}"
-        class="rounded-full w-28 h-28 mx-auto mb-4 border-2 border-blue-500/60 shadow-md object-cover"
       />
-      <h4 class="font-semibold text-lg text-center text-blue-500">
-        {{ member.name }}
-      </h4>
-      <p class="text-gray-400 text-sm text-center">{{ member.role }}</p>
+      <!-- Accent glow -->
+      <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-blue-600/20 to-transparent blur-xl"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Impact -->
-<section class="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-center relative">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(42,142,158,0.15),transparent_70%)]"></div>
-
-  <h2 class="relative text-3xl font-bold text-blue-500 mb-12 z-10">
-    Our Impact
-  </h2>
-  <div class="relative grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-5xl mx-auto z-10">
-    <div
-      *ngFor="let stat of stats"
-      class="p-10 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 shadow-lg hover:shadow-xl hover:scale-105 transition"
-    >
-      <h3 class="text-4xl font-extrabold text-white mb-2">
-        {{ stat.value }}
-      </h3>
-      <p class="text-gray-400">{{ stat.label }}</p>
+  <!-- Mission & Vision -->
+  <section class="py-24 px-6 md:px-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+    <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      <div class="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20 transition">
+        <h3 class="text-2xl font-semibold text-blue-500 mb-4">Mission</h3>
+        <p class="text-gray-300 leading-relaxed">
+          Power bold ideas into reality through a builder-centric startup
+          incubator and accelerator ecosystem. We empower founders with
+          resources, mentorship, and networks to thrive in competitive markets.
+        </p>
+      </div>
+      <div class="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20 transition">
+        <h3 class="text-2xl font-semibold text-blue-500 mb-4">Vision</h3>
+        <p class="text-gray-300 leading-relaxed">
+          Put India at the center of global entrepreneurship by turning raw
+          ideas into world-class ventures. Our vision is to inspire founders to
+          dream big, execute fast, and build scalable businesses that change the world.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<app-footer></app-footer>
+  <!-- Leadership & Team -->
+  <section class="py-24 px-6 md:px-20 bg-black text-white">
+    <h2 class="text-3xl font-bold text-blue-500 mb-12 text-center">
+      Leadership & Team
+    </h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      @for (member of team; track member) {
+        <div
+          class="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/20 shadow-lg hover:shadow-xl hover:scale-105 transform transition"
+          >
+          <img
+            [src]="member.photo"
+            alt="{{ member.name }}"
+            class="rounded-full w-28 h-28 mx-auto mb-4 border-2 border-blue-500/60 shadow-md object-cover"
+            />
+            <h4 class="font-semibold text-lg text-center text-blue-500">
+              {{ member.name }}
+            </h4>
+            <p class="text-gray-400 text-sm text-center">{{ member.role }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-center relative">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(42,142,158,0.15),transparent_70%)]"></div>
+
+      <h2 class="relative text-3xl font-bold text-blue-500 mb-12 z-10">
+        Our Impact
+      </h2>
+      <div class="relative grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-5xl mx-auto z-10">
+        @for (stat of stats; track stat) {
+          <div
+            class="p-10 rounded-2xl bg-white/5 backdrop-blur-xl border border-blue-500/30 shadow-lg hover:shadow-xl hover:scale-105 transition"
+            >
+            <h3 class="text-4xl font-extrabold text-white mb-2">
+              {{ stat.value }}
+            </h3>
+            <p class="text-gray-400">{{ stat.label }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <app-footer></app-footer>

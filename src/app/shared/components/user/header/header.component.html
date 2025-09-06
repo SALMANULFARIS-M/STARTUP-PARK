@@ -1,6 +1,6 @@
 <header
   class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[90%] lg:w-[85%] bg-black/90 backdrop-blur-lg border border-blue-500/20 shadow-lg rounded-2xl overflow-hidden"
->
+  >
   <!-- Subtle background highlight -->
   <div
     class="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-white/5 opacity-50 rounded-2xl"
@@ -14,106 +14,107 @@
           src="logo.png"
           alt="Logo"
           class="relative h-10 w-auto drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
-        />
+          />
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-10">
+        <a
+          routerLink="/"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="text-blue-500 border-b-2 border-blue-500"
+          class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
+          >
+          Home
+        </a>
+        <a
+          routerLink="/about"
+          routerLinkActive="text-blue-500 border-b-2 border-blue-500"
+          class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
+          >
+          About
+        </a>
+        <a
+          routerLink="/contact"
+          routerLinkActive="text-blue-500 border-b-2 border-blue-500"
+          class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
+          >
+          Contact
+        </a>
+      </nav>
+
+      <!-- Register Button -->
+      <div class="hidden md:flex">
+        <a
+          (click)="scrollToSection('contactform')"
+          class="group relative px-6 py-2.5 font-semibold text-white rounded-lg bg-primary hover:bg-dark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-blue-500/30"
+          >
+          Register
+        </a>
       </div>
-    </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-10">
-      <a
-        routerLink="/"
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="text-blue-500 border-b-2 border-blue-500"
-        class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
-      >
-        Home
-      </a>
-      <a
-        routerLink="/about"
-        routerLinkActive="text-blue-500 border-b-2 border-blue-500"
-        class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
-      >
-        About
-      </a>
-      <a
-        routerLink="/contact"
-        routerLinkActive="text-blue-500 border-b-2 border-blue-500"
-        class="relative text-white/80 hover:text-white transition-all duration-300 pb-1"
-      >
-        Contact
-      </a>
-    </nav>
-
-    <!-- Register Button -->
-    <div class="hidden md:flex">
-      <a
-     (click)="scrollToSection('contactform')"
-        class="group relative px-6 py-2.5 font-semibold text-white rounded-lg bg-primary hover:bg-dark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-blue-500/30"
-      >
-        Register
-      </a>
-    </div>
-
-    <!-- Mobile Toggle -->
-    <button
-      (click)="toggleMenu()"
-      class="md:hidden w-10 h-10 flex items-center justify-center text-white focus:outline-none"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6 transition-transform duration-300"
-        [class.rotate-90]="isMenuOpen"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+      <!-- Mobile Toggle -->
+      <button
+        (click)="toggleMenu()"
+        class="md:hidden w-10 h-10 flex items-center justify-center text-white focus:outline-none"
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 transition-transform duration-300"
+          [class.rotate-90]="isMenuOpen"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
           [attr.d]="
             isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'
           "
-        />
-      </svg>
-    </button>
-  </div>
+            />
+          </svg>
+        </button>
+      </div>
 
-  <!-- Mobile Nav -->
-  <div
-    *ngIf="isMenuOpen"
-    class="md:hidden bg-black/95 backdrop-blur-lg border-t border-blue-500/20 shadow-xl rounded-b-2xl"
-    [@slideDown]
-  >
-    <div class="px-6 py-6 space-y-4">
-      <a
-        routerLink="/"
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="text-blue-500 bg-blue-500/10"
-        class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
-      >
-        Home
-      </a>
-      <a
-        routerLink="/about"
-        routerLinkActive="text-blue-500 bg-blue-500/10"
-        class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
-      >
-        About
-      </a>
-      <a
-        routerLink="/contact"
-        routerLinkActive="text-blue-500 bg-blue-500/10"
-        class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
-      >
-        Contact
-      </a>
-      <a
-     (click)="scrollToSection('contactform')"
-        class="block mt-4 px-6 py-3 rounded-lg bg-primary text-white text-center font-semibold shadow-md hover:bg-blue-00 hover:scale-105 transition-all"
-      >
-        Register
-      </a>
-    </div>
-  </div>
-</header>
+      <!-- Mobile Nav -->
+      @if (isMenuOpen) {
+        <div
+          class="md:hidden bg-black/95 backdrop-blur-lg border-t border-blue-500/20 shadow-xl rounded-b-2xl"
+          [@slideDown]
+          >
+          <div class="px-6 py-6 space-y-4">
+            <a
+              routerLink="/"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="text-blue-500 bg-blue-500/10"
+              class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
+              >
+              Home
+            </a>
+            <a
+              routerLink="/about"
+              routerLinkActive="text-blue-500 bg-blue-500/10"
+              class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
+              >
+              About
+            </a>
+            <a
+              routerLink="/contact"
+              routerLinkActive="text-blue-500 bg-blue-500/10"
+              class="block text-base font-medium text-white/80 hover:text-white hover:bg-blue-500/5 px-4 py-3 rounded-lg transition-all"
+              >
+              Contact
+            </a>
+            <a
+              (click)="scrollToSection('contactform')"
+              class="block mt-4 px-6 py-3 rounded-lg bg-primary text-white text-center font-semibold shadow-md hover:bg-blue-00 hover:scale-105 transition-all"
+              >
+              Register
+            </a>
+          </div>
+        </div>
+      }
+    </header>

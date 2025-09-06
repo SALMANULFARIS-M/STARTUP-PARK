@@ -1,9 +1,9 @@
 <!-- toast.component.html -->
-<div
-  *ngIf="toast$ | async as toast"
-  class="fixed top-5 right-5 z-50 transition-all duration-500"
->
+@if (toast$ | async; as toast) {
   <div
+    class="fixed top-5 right-5 z-50 transition-all duration-500"
+    >
+    <div
     class="flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl
            backdrop-blur-xl bg-gradient-to-r from-white/10 to-white/5
            border border-white/20 text-sm md:text-base max-w-[90vw] sm:max-w-sm
@@ -12,21 +12,25 @@
       'border-green-400 text-green-300 shadow-green-500/30': toast.type === 'success',
       'border-red-400 text-red-300 shadow-red-500/30': toast.type === 'error'
     }"
-  >
-    <!-- Icon -->
-    <div
+      >
+      <!-- Icon -->
+      <div
       class="flex items-center justify-center w-8 h-8 rounded-full
              bg-white/10 border border-white/20"
       [ngClass]="{
         'text-green-400': toast.type === 'success',
         'text-red-400': toast.type === 'error'
       }"
-    >
-      <ng-container *ngIf="toast.type === 'success'">✔️</ng-container>
-      <ng-container *ngIf="toast.type === 'error'">⚠️</ng-container>
+        >
+        @if (toast.type === 'success') {
+          ✔️
+        }
+        @if (toast.type === 'error') {
+          ⚠️
+        }
+      </div>
+      <!-- Message -->
+      <p class="font-medium tracking-wide drop-shadow-md">{{ toast.text }}</p>
     </div>
-
-    <!-- Message -->
-    <p class="font-medium tracking-wide drop-shadow-md">{{ toast.text }}</p>
   </div>
-</div>
+}
