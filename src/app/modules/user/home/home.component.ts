@@ -6,10 +6,11 @@ import { LucideAngularModule } from 'lucide-angular';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactService } from '../../../shared/services/contact.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, HeaderComponent, FooterComponent, LucideAngularModule,ReactiveFormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, LucideAngularModule, ReactiveFormsModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
