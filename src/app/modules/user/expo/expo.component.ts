@@ -1,16 +1,25 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FooterComponent } from '../../../shared/components/user/footer/footer.component';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ContactService } from '../../../shared/services/contact.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-expo',
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent,ReactiveFormsModule],
   templateUrl: './expo.component.html',
   styleUrl: './expo.component.css'
 })
 export class ExpoComponent {
   openIndex: number | null = null;
-  constructor(@Inject(PLATFORM_ID) private platformId: object) { }
+  registerForm!: FormGroup;
+  isSubmitting = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object,
+    private fb: FormBuilder,
+    private contactService: ContactService,
+    private toast: ToastService) { }
   faqs = [
     {
       question: 'Is there any registration fee for The Startup Expo?',
@@ -40,6 +49,23 @@ export class ExpoComponent {
     { src: 'https://www.flyrad.in/assets/FlyradLogo-B-TRSE68.png', alt: 'Flyrad' },
     { src: 'https://karumitra.in/assets/img/logo/logo.png', alt: 'Karumithra' },  ];
 
+ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.registerForm  = this.fb.group({
+         name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      mobile: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[6-9]\d{9}$/), // Valid Indian mobile number
+        ],
+      ],
+      subject: ['', [Validators.required, Validators.minLength(5)]],
+      });
+    }
+  }
+
   toggleFaq(index: number) {
     this.openIndex = this.openIndex === index ? null : index;
   }
@@ -51,6 +77,29 @@ export class ExpoComponent {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
+  }
+
+onSubmit(): void {
+
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    this.contactService.submitExpoContactForm(this.registerForm.value).subscribe({
+      next: () => {
+        this.toast.showSuccess('Thank you! Your response has been saved.');
+        this.registerForm.reset();
+        this.isSubmitting = false;
+      },
+      error: (err) => {
+        console.error("Error submitting form", err);
+        this.toast.showError('Something went wrong. Please try again.');
+        this.isSubmitting = false;
+      }
+    });
   }
 
 }

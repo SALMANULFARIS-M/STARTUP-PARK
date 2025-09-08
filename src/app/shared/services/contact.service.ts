@@ -14,4 +14,9 @@ export class ContactService {
   submitContactForm(data: any): Observable<any> {
     return this.http.post('/api/contact', data);
   }
+
+  // contact.service.ts
+  submitExpoContactForm(data: any): Observable<any> {
+    return this.http.post('/api/expo', data);
+  }
 }
