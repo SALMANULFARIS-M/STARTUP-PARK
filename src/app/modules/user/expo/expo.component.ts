@@ -4,10 +4,11 @@ import { FooterComponent } from '../../../shared/components/user/footer/footer.c
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactService } from '../../../shared/services/contact.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { SocialFloatComponent } from '../../../shared/components/user/social-float/social-float.component';
 
 @Component({
   selector: 'app-expo',
-  imports: [CommonModule, FooterComponent,ReactiveFormsModule],
+  imports: [CommonModule, FooterComponent, ReactiveFormsModule, SocialFloatComponent],
   templateUrl: './expo.component.html',
   styleUrl: './expo.component.css'
 })
@@ -15,11 +16,12 @@ export class ExpoComponent {
   openIndex: number | null = null;
   registerForm!: FormGroup;
   isSubmitting = false;
-
+  isMobileMenuOpen = false;
   constructor(@Inject(PLATFORM_ID) private platformId: object,
     private fb: FormBuilder,
     private contactService: ContactService,
-    private toast: ToastService) { }
+    private toast: ToastService) {
+  }
   faqs = [
     {
       question: 'Is there any registration fee for The Startup Expo?',
@@ -47,21 +49,21 @@ export class ExpoComponent {
     { src: 'https://franchisify.in/assets/Franchisify.in-logo-white-png-(2)-DeohrdEG.png', alt: 'Franchisify' },
     { src: 'https://www.careercafe.co/careercafe_logo-transparent.png', alt: 'Career Cafe' },
     { src: 'https://www.flyrad.in/assets/FlyradLogo-B-TRSE68.png', alt: 'Flyrad' },
-    { src: 'https://karumitra.in/assets/img/logo/logo.png', alt: 'Karumithra' },  ];
+    { src: 'https://karumitra.in/assets/img/logo/logo.png', alt: 'Karumithra' },];
 
-ngOnInit() {
+  ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.registerForm  = this.fb.group({
-         name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      mobile: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[6-9]\d{9}$/), // Valid Indian mobile number
+      this.registerForm = this.fb.group({
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        mobile: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[6-9]\d{9}$/), // Valid Indian mobile number
+          ],
         ],
-      ],
-      subject: ['', [Validators.required, Validators.minLength(5)]],
+        subject: ['', [Validators.required, Validators.minLength(5)]],
       });
     }
   }
@@ -79,7 +81,7 @@ ngOnInit() {
     }
   }
 
-onSubmit(): void {
+  onSubmit(): void {
 
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
