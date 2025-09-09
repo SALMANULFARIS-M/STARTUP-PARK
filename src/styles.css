@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* styles.css */
+html { scroll-behavior: smooth; }
 
 /* ✅ Define your design tokens */
 @theme {

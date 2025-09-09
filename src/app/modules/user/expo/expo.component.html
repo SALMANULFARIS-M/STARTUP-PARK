@@ -27,7 +27,7 @@
       (click)="scrollToSection('register')"
       class="px-8 py-3 rounded-2xl bg-gradient-to-r from-primary to-accent text-white font-semibold shadow-lg hover:scale-105 transition"
     >
-      Register Now
+      Apply to Pitch Your Idea
     </a>
   </div>
 </section>
@@ -145,6 +145,275 @@
   </div>
 </section>
 
+<!-- REGISTRATION FORM -->
+<section
+  id="register"
+  class="register py-20 px-6 md:px-20 bg-black text-white text-center"
+>
+  <div class="relative z-10 max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#2A8E9E] mb-4">
+        Get In Touch
+      </h2>
+      <p class="text-white/70 mb-8">
+        Reach out to us with inquiries or collaboration opportunities.
+      </p>
+    </div>
+
+    @if (registerForm) {
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+      class="bg-[#180D39]/40 border border-[#2A8E9E]/30 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl space-y-6"
+    >
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Name -->
+        <div>
+          <label class="block text-white font-medium mb-1">
+            Full Name <span class="text-red-400">*</span>
+          </label>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Enter your full name"
+            class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
+            [ngClass]="{
+              'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                registerForm.get('name')?.invalid &&
+                (registerForm.get('name')?.touched || registerForm.touched)
+            }"
+          />
+          @if (registerForm.get('name')?.touched &&
+          registerForm.get('name')?.hasError('required')) {
+          <p class="text-red-400 text-sm mt-1">Full name is required</p>
+          } @if (registerForm.get('name')?.touched &&
+          registerForm.get('name')?.hasError('minlength')) {
+          <p class="text-red-400 text-sm mt-1">
+            Name must be at least 3 characters
+          </p>
+          }
+        </div>
+
+        <!-- Mobile -->
+        <div>
+          <label class="block text-white font-medium mb-1">
+            Mobile Number <span class="text-red-400">*</span>
+          </label>
+          <input
+            formControlName="mobile"
+            type="tel"
+            maxlength="10"
+            placeholder="Enter your mobile number"
+            class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
+            [ngClass]="{
+              'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+                registerForm.get('mobile')?.invalid &&
+                (registerForm.get('mobile')?.touched || registerForm.touched)
+            }"
+          />
+          @if (registerForm.get('mobile')?.touched &&
+          registerForm.get('mobile')?.hasError('required')) {
+          <p class="text-red-400 text-sm mt-1">Mobile number is required</p>
+          } @if (registerForm.get('mobile')?.touched &&
+          registerForm.get('mobile')?.hasError('pattern')) {
+          <p class="text-red-400 text-sm mt-1">
+            Must be a valid 10-digit number
+          </p>
+          }
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-white font-medium mb-1">
+          Email <span class="text-red-400">*</span>
+        </label>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="Enter your email"
+          class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
+          [ngClass]="{
+            'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+              registerForm.get('email')?.invalid &&
+              (registerForm.get('email')?.touched || registerForm.touched)
+          }"
+        />
+        @if (registerForm.get('email')?.touched &&
+        registerForm.get('email')?.hasError('required')) {
+        <p class="text-red-400 text-sm mt-1">Email is required</p>
+        } @if (registerForm.get('email')?.touched &&
+        registerForm.get('email')?.hasError('email')) {
+        <p class="text-red-400 text-sm mt-1">Enter a valid email address</p>
+        }
+      </div>
+
+      <!-- Subject -->
+      <div>
+        <label class="block text-white font-medium mb-1">
+          Subject <span class="text-red-400">*</span>
+        </label>
+        <textarea
+          formControlName="subject"
+          rows="4"
+          placeholder="Briefly describe your subject"
+          class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50 resize-none"
+          [ngClass]="{
+            'border-red-500 focus:border-red-500 focus:ring-red-400/50':
+              registerForm.get('subject')?.invalid &&
+              (registerForm.get('subject')?.touched || registerForm.touched)
+          }"
+        ></textarea>
+        @if (registerForm.get('subject')?.touched &&
+        registerForm.get('subject')?.hasError('required')) {
+        <p class="text-red-400 text-sm mt-1">Subject is required</p>
+        } @if (registerForm.get('subject')?.touched &&
+        registerForm.get('subject')?.hasError('minlength')) {
+        <p class="text-red-400 text-sm mt-1">
+          Subject must be at least 5 characters
+        </p>
+        }
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center pt-4">
+        <button
+          type="submit"
+          [disabled]="isSubmitting"
+          class="px-12 py-4 bg-gradient-to-r from-[#2A8E9E] to-[#180D39] text-white font-semibold rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
+        >
+          {{ isSubmitting ? "Submitting..." : "Submit" }}
+        </button>
+      </div>
+    </form>
+    }
+  </div>
+</section>
+
+<!-- News Section -->
+<section
+  class="relative bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-6"
+>
+  <div class="max-w-6xl mx-auto text-center">
+    <!-- Heading -->
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-[#2A8E9E]">
+      In the News
+    </h2>
+    <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+      Discover the latest media highlights and press features about
+      <span class="text-white font-semibold">The Startup Park</span>.
+    </p>
+
+    <!-- News Grid -->
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Economic Times -->
+      <a
+        href="https://economictimes.indiatimes.com/tech/startups/ique-ventures-launches-rs-600-crore-startup-park-aims-to-create-over-10000-jobs/articleshow/123318286.cms"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block rounded-2xl bg-[#0F0F10]/70 backdrop-blur-xl border border-[#2A8E9E]/30 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition transform overflow-hidden"
+      >
+        <div class="relative">
+          <img
+            src="https://img.etimg.com/thumb/width-650,height-488,imgsize-13780,resizemode-75,msid-123318324/tech/startups/ique-ventures-launches-rs-600-crore-startup-park-aims-to-create-over-10000-jobs.jpg"
+            alt="Startup Park Launch"
+            class="w-full h-56 object-cover group-hover:scale-105 transition"
+          />
+          <div
+            class="absolute top-4 left-4 bg-gradient-to-r from-blue-700 to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md"
+          >
+            Exclusive
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://economictimes.indiatimes.com/favicon.ico"
+              alt="Economic Times"
+              class="h-5 w-5"
+            />
+            <span class="font-semibold">The Economic Times</span>
+            <span class="text-gray-400 text-sm ml-auto">Aug 15, 2025</span>
+          </div>
+          <p class="text-lg font-medium leading-relaxed text-gray-100">
+            iQue Ventures launches ₹600 crore Startup Park, aiming to create
+            over 10,000 jobs.
+          </p>
+          <div
+            class="flex items-center mt-4 text-[#2A8E9E] group-hover:gap-3 transition-all"
+          >
+            <span class="hover:underline">Read More</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+      </a>
+
+      <!-- Business Standard -->
+      <a
+        href="https://www.business-standard.com/content/press-releases-ani/ique-ventures-launches-600-crore-startup-park-project-india-s-first-startup-dedicated-infrastructure-hub-125081900361_1.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block rounded-2xl bg-[#0F0F10]/70 backdrop-blur-xl border border-[#2A8E9E]/30 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition transform overflow-hidden"
+      >
+        <div class="relative">
+          <img
+            src="https://bsmedia.business-standard.com/_media/bs/img/article/2025-08/20/full/20250819104104.jpg"
+            alt="Startup Infrastructure Hub"
+            class="w-full h-56 object-cover group-hover:scale-105 transition"
+          />
+          <div
+            class="absolute top-4 left-4 bg-gradient-to-r from-red-700 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md"
+          >
+            Breaking
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://www.business-standard.com/favicon.ico"
+              alt="Business Standard"
+              class="h-5 w-5"
+            />
+            <span class="font-semibold">Business Standard</span>
+            <span class="text-gray-400 text-sm ml-auto">Aug 20, 2025</span>
+          </div>
+          <p class="text-lg font-medium leading-relaxed text-gray-100">
+            iQue Ventures unveils ₹600 crore Startup Park — India’s first
+            startup-dedicated infrastructure hub.
+          </p>
+          <div
+            class="flex items-center mt-4 text-[#2A8E9E] group-hover:gap-3 transition-all"
+          >
+            <span class="hover:underline">Read More</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPO LINEUP -->
+<section class="lineup py-20 px-6 bg-black text-center text-white">
+  <h2 class="text-3xl font-bold text-[#2A8E9E] mb-12">Expo Line-up</h2>
+
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 max-w-5xl mx-auto"
+  >
+    <div
+      *ngFor="let logo of logos"
+      class="flex items-center justify-center p-4 bg-[#180D39]/40 border border-[#2A8E9E]/30 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition"
+    >
+      <img
+        [src]="logo.src"
+        [alt]="logo.alt"
+        class="h-16 object-contain grayscale hover:grayscale-0 hover:brightness-110 transition"
+      />
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section
   class="faq-section py-20 px-6 md:px-20 bg-gradient-to-br from-black via-gray-900 to-black text-white"
@@ -174,178 +443,5 @@
     </div>
   </div>
 </section>
-
-<!-- REGISTRATION FORM -->
-<section
-  id="register"
-  class="register py-20 px-6 md:px-20 bg-black text-white text-center"
->
-  <div class="relative z-10 max-w-4xl mx-auto">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#2A8E9E] mb-4">
-        Get In Touch
-      </h2>
-      <p class="text-white/70 mb-8">
-        Reach out to us with inquiries or collaboration opportunities.
-      </p>
-    </div>
-
-    @if (registerForm) {
-      <form
-        [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()"
-        class="bg-[#180D39]/40 border border-[#2A8E9E]/30 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl space-y-6"
-      >
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Name -->
-          <div>
-            <label class="block text-white font-medium mb-1">
-              Full Name <span class="text-red-400">*</span>
-            </label>
-            <input
-              formControlName="name"
-              type="text"
-              placeholder="Enter your full name"
-              class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
-              [ngClass]="{
-                'border-red-500 focus:border-red-500 focus:ring-red-400/50':
-                  registerForm.get('name')?.invalid &&
-                  (registerForm.get('name')?.touched || registerForm.touched)
-              }"
-            />
-            @if (registerForm.get('name')?.touched &&
-            registerForm.get('name')?.hasError('required')) {
-              <p class="text-red-400 text-sm mt-1">Full name is required</p>
-            }
-            @if (registerForm.get('name')?.touched &&
-            registerForm.get('name')?.hasError('minlength')) {
-              <p class="text-red-400 text-sm mt-1">
-                Name must be at least 3 characters
-              </p>
-            }
-          </div>
-
-          <!-- Mobile -->
-          <div>
-            <label class="block text-white font-medium mb-1">
-              Mobile Number <span class="text-red-400">*</span>
-            </label>
-            <input
-              formControlName="mobile"
-              type="tel"
-              maxlength="10"
-              placeholder="Enter your mobile number"
-              class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
-              [ngClass]="{
-                'border-red-500 focus:border-red-500 focus:ring-red-400/50':
-                  registerForm.get('mobile')?.invalid &&
-                  (registerForm.get('mobile')?.touched || registerForm.touched)
-              }"
-            />
-            @if (registerForm.get('mobile')?.touched &&
-            registerForm.get('mobile')?.hasError('required')) {
-              <p class="text-red-400 text-sm mt-1">Mobile number is required</p>
-            }
-            @if (registerForm.get('mobile')?.touched &&
-            registerForm.get('mobile')?.hasError('pattern')) {
-              <p class="text-red-400 text-sm mt-1">
-                Must be a valid 10-digit number
-              </p>
-            }
-          </div>
-        </div>
-
-        <!-- Email -->
-        <div>
-          <label class="block text-white font-medium mb-1">
-            Email <span class="text-red-400">*</span>
-          </label>
-          <input
-            formControlName="email"
-            type="email"
-            placeholder="Enter your email"
-            class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50"
-            [ngClass]="{
-              'border-red-500 focus:border-red-500 focus:ring-red-400/50':
-                registerForm.get('email')?.invalid &&
-                (registerForm.get('email')?.touched || registerForm.touched)
-            }"
-          />
-          @if (registerForm.get('email')?.touched &&
-          registerForm.get('email')?.hasError('required')) {
-            <p class="text-red-400 text-sm mt-1">Email is required</p>
-          }
-          @if (registerForm.get('email')?.touched &&
-          registerForm.get('email')?.hasError('email')) {
-            <p class="text-red-400 text-sm mt-1">Enter a valid email address</p>
-          }
-        </div>
-
-        <!-- Subject -->
-        <div>
-          <label class="block text-white font-medium mb-1">
-            Subject <span class="text-red-400">*</span>
-          </label>
-          <textarea
-            formControlName="subject"
-            rows="4"
-            placeholder="Briefly describe your subject"
-            class="w-full px-6 py-4 bg-[#0F0F15] border rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-[#2A8E9E] focus:ring-2 focus:ring-[#2A8E9E]/50 resize-none"
-            [ngClass]="{
-              'border-red-500 focus:border-red-500 focus:ring-red-400/50':
-                registerForm.get('subject')?.invalid &&
-                (registerForm.get('subject')?.touched || registerForm.touched)
-            }"
-          ></textarea>
-          @if (registerForm.get('subject')?.touched &&
-          registerForm.get('subject')?.hasError('required')) {
-            <p class="text-red-400 text-sm mt-1">Subject is required</p>
-          }
-          @if (registerForm.get('subject')?.touched &&
-          registerForm.get('subject')?.hasError('minlength')) {
-            <p class="text-red-400 text-sm mt-1">
-              Subject must be at least 5 characters
-            </p>
-          }
-        </div>
-
-        <!-- Submit -->
-        <div class="text-center pt-4">
-          <button
-            type="submit"
-            [disabled]="isSubmitting"
-            class="px-12 py-4 bg-gradient-to-r from-[#2A8E9E] to-[#180D39] text-white font-semibold rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
-          >
-            {{ isSubmitting ? 'Submitting...' : 'Submit' }}
-          </button>
-        </div>
-      </form>
-    }
-  </div>
-</section>
-
-
-<!-- EXPO LINEUP -->
-<section
-  class="lineup py-20 px-6 bg-gradient-to-br from-black via-gray-900 to-black text-center text-white"
->
-  <h2 class="text-3xl font-bold text-[#2A8E9E] mb-12">Expo Line-up</h2>
-
-  <div
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 max-w-5xl mx-auto"
-  >
-    <div
-      *ngFor="let logo of logos"
-      class="flex items-center justify-center p-4 bg-[#180D39]/40 border border-[#2A8E9E]/30 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition"
-    >
-      <img
-        [src]="logo.src"
-        [alt]="logo.alt"
-        class="h-16 object-contain grayscale hover:grayscale-0 hover:brightness-110 transition"
-      />
-    </div>
-  </div>
-</section>
-
 
 <app-footer></app-footer>

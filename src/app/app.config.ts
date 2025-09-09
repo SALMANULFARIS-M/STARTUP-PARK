@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -30,7 +30,14 @@ const lucideIcons = {
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
   importProvidersFrom(BrowserAnimationsModule), provideAnimations(),
-  provideRouter(routes), provideClientHydration(withEventReplay()),
+  provideRouter(
+    routes,
+    withInMemoryScrolling({
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+    })
+  ),
+  provideClientHydration(withEventReplay()),
   importProvidersFrom(LucideAngularModule.pick(lucideIcons)),
   provideHttpClient(withFetch()),
   ]
