@@ -64,10 +64,10 @@ export class HomeComponent {
   ];
 
   stats = [
-  { value: '200+', label: 'Startups Supported', icon: 'users' },
-  { value: '₹600 Cr+', label: 'Funding Accessed', icon: 'rocket' },
-  { value: '10,000+', label: 'Jobs Created', icon: 'briefcase' }
-];
+    { value: '200+', label: 'Startups Supported', icon: 'users' },
+    { value: '₹600 Cr+', label: 'Funding Accessed', icon: 'rocket' },
+    { value: '10,000+', label: 'Jobs Created', icon: 'briefcase' }
+  ];
 
 
 
@@ -76,7 +76,7 @@ export class HomeComponent {
   ];
 
   startCountdown() {
-    const launchDate = new Date('2025-10-03T00:00:00').getTime();
+    const launchDate = new Date('2025-10-15T00:00:00').getTime();
 
     this.timerInterval = setInterval(() => {
       const now = new Date().getTime();
