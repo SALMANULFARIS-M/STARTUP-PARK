@@ -76,7 +76,7 @@ export class HomeComponent {
   ];
 
   startCountdown() {
-    const launchDate = new Date('2025-10-15T00:00:00').getTime();
+    const launchDate = new Date('2025-10-26T00:00:00').getTime();
 
     this.timerInterval = setInterval(() => {
       const now = new Date().getTime();
