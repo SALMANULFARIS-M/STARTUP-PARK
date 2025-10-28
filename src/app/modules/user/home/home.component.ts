@@ -70,13 +70,12 @@ export class HomeComponent {
   ];
 
 
-
   spotlightEvents = [
     { title: '7-Day Startup Expo 2025 — Bangalore', desc: 'Explore recent funding startups, meet investors, and discover the future of tech.' }
   ];
 
   startCountdown() {
-    const launchDate = new Date('2025-10-26T00:00:00').getTime();
+    const launchDate = new Date('2025-11-07T00:00:00').getTime();
 
     this.timerInterval = setInterval(() => {
       const now = new Date().getTime();
