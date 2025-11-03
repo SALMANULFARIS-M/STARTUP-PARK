@@ -8,11 +8,13 @@ import { ContactService } from './shared/services/contact.service';
 import { AnalyticsService } from './shared/services/analytics.service';
 import { ToastService } from './shared/services/toast.service';
 import { ToastComponent } from './shared/components/toast/toast.component';
+import { routeTransitionAnimations } from './shared/animation/route-animations';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, ReactiveFormsModule, ToastComponent],
   templateUrl: './app.component.html',
+  animations: [routeTransitionAnimations],
   styleUrl: './app.component.css'
 })
 
@@ -55,6 +57,10 @@ export class AppComponent implements OnInit, OnDestroy {
       });
 
     }
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   scrollToSection(sectionId: string) {
