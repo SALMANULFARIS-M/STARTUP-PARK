@@ -1,10 +1,10 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+
 import {
   MapPin, Mail, Phone, BookOpen, Briefcase, Code, Coffee, FlaskConical, Home, LucideAngularModule,
   Mic, Rocket, Scale, UserCheck, Users
@@ -29,9 +29,8 @@ const lucideIcons = {
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-  importProvidersFrom(BrowserAnimationsModule), provideAnimations(),
   provideRouter(
-    routes,
+    routes,withViewTransitions(),
     withInMemoryScrolling({
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
@@ -40,5 +39,6 @@ export const appConfig: ApplicationConfig = {
   provideClientHydration(withEventReplay()),
   importProvidersFrom(LucideAngularModule.pick(lucideIcons)),
   provideHttpClient(withFetch()),
+
   ]
 };

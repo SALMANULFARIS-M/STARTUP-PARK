@@ -1,3 +1,4 @@
+// src/app/animations/route-animations.ts
 import {
   trigger,
   transition,
@@ -5,33 +6,65 @@ import {
   query,
   group,
   animate,
+  animateChild,
 } from '@angular/animations';
 
-export const routeTransitionAnimations = trigger('routeAnimations', [
-  transition('* <=> *', [
-    // Set position context
+export const routeAnimations = trigger('routeAnimations', [
+  // Forward slide (right → left)
+  transition('HomePage => AboutPage, HomePage => ExpoPage, HomePage => ContactPage, AboutPage => ExpoPage, AboutPage => ContactPage, ExpoPage => ContactPage', [
+    style({ position: 'relative' }),
     query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-      }),
+      style({ position: 'absolute', width: '100%', top: 0, left: 0 })
     ], { optional: true }),
-
-    // Start enter component transparent
-    query(':enter', [style({ opacity: 0, transform: 'translateY(20px)' })], { optional: true }),
-
+    query(':enter', [
+      style({ transform: 'translateX(100%)', opacity: 0 })
+    ], { optional: true }),
     group([
-      // Leave animation
       query(':leave', [
-        animate('400ms ease', style({ opacity: 0, transform: 'translateY(-20px)' }))
+        animate('500ms ease', style({ transform: 'translateX(-100%)', opacity: 0 }))
       ], { optional: true }),
-
-      // Enter animation
       query(':enter', [
-        animate('500ms 150ms ease', style({ opacity: 1, transform: 'translateY(0)' }))
+        animate('500ms ease', style({ transform: 'translateX(0)', opacity: 1 })),
+        query('@*', animateChild())
+      ], { optional: true })
+    ])
+  ]),
+
+  // Backward slide (left → right)
+  transition('ContactPage => ExpoPage, ContactPage => AboutPage, ContactPage => HomePage, ExpoPage => AboutPage, ExpoPage => HomePage, AboutPage => HomePage', [
+    style({ position: 'relative' }),
+    query(':enter, :leave', [
+      style({ position: 'absolute', width: '100%', top: 0, left: 0 })
+    ], { optional: true }),
+    query(':enter', [
+      style({ transform: 'translateX(-100%)', opacity: 0 })
+    ], { optional: true }),
+    group([
+      query(':leave', [
+        animate('500ms ease', style({ transform: 'translateX(100%)', opacity: 0 }))
       ], { optional: true }),
+      query(':enter', [
+        animate('500ms ease', style({ transform: 'translateX(0)', opacity: 1 })),
+        query('@*', animateChild())
+      ], { optional: true })
+    ])
+  ]),
+
+  // Fallback fade (for anything else)
+  transition('* <=> *', [
+    style({ position: 'relative' }),
+    query(':enter, :leave', [
+      style({ position: 'absolute', width: '100%', top: 0, left: 0 })
+    ], { optional: true }),
+    query(':enter', [ style({ opacity: 0 }) ], { optional: true }),
+    group([
+      query(':leave', [
+        animate('300ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+      query(':enter', [
+        animate('300ms ease', style({ opacity: 1 })),
+        query('@*', animateChild())
+      ], { optional: true })
     ])
   ])
 ]);
