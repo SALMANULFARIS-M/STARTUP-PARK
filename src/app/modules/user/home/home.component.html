@@ -1,6 +1,5 @@
 <app-header></app-header>
 
-
 <!-- Hero Section -->
 <section
   class="diagonal-bg relative flex items-center min-h-screen overflow-hidden"
@@ -55,43 +54,26 @@
     </div>
 
     <!-- Right -->
-    <div class="flex flex-col justify-center items-center mt-8 lg:mt-0 lg:items-end">
+    <div
+      class="flex flex-col justify-center items-center mt-8 lg:mt-14 ms-0 lg:ms-16 lg:items-end"
+    >
       <div
-        class="bg-black/90 backdrop-blur-xl rounded-3xl p-8 border border-primary/20 shadow-2xl text-center"
+        class="bg-black/90 backdrop-blur-xl rounded-3xl p-2 border border-primary/20 shadow-2xl text-center"
       >
-        <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 montserrat">
-          Launching In
-        </h3>
-        <!-- Countdown -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div
-            class="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex flex-col items-center justify-center"
-          >
-            <div class="text-3xl font-bold text-primary">{{ days }}</div>
-            <p class="text-xs uppercase text-white/70">Days</p>
+        <div
+          class="p-6 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex flex-col items-center justify-center mb-6"
+        >
+          <div class="text-2xl font-extrabold text-primary mb-2 animate-pulse merriweather-black">
+            Startup Park is Now Open
           </div>
-          <div
-            class="p-4 roboto rounded-xl bg-gradient-to-br from-accent/20 to-primary/20 flex flex-col items-center justify-center"
-          >
-            <div class="text-3xl font-bold text-accent">{{ hours }}</div>
-            <p class="text-xs uppercase text-white/70">Hours</p>
-          </div>
-          <div
-            class="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex flex-col items-center justify-center"
-          >
-            <div class="text-3xl font-bold text-primary">{{ minutes }}</div>
-            <p class="text-xs uppercase text-white/70">Mins</p>
-          </div>
-          <div
-            class="p-4 rounded-xl bg-gradient-to-br from-accent/20 to-primary/20 flex flex-col items-center justify-center"
-          >
-            <div class="text-3xl font-bold text-accent">{{ seconds }}</div>
-            <p class="text-xs uppercase text-white/70">Secs</p>
-          </div>
+          <p class="text-white/70 text-sm md:text-base montserrat">
+            Explore, connect, and grow with the next generation of innovators.
+          </p>
         </div>
-        <div class="border-t border-primary/20 pt-4 montserrat">
+
+        <div class="border-t border-primary/20 pt-4 mt-6 montserrat">
           <p class="text-white/70 text-sm">
-            Be the first to experience the future of startup innovation
+            The future of startup innovation has officially begun ✨
           </p>
         </div>
       </div>
@@ -118,7 +100,9 @@
       <div
         class="w-24 h-1 bg-gradient-to-r from-[#2a3f80] to-cyan-700 mx-auto mb-12"
       ></div>
-      <p class="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto poppins-regular text-justify">
+      <p
+        class="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto poppins-regular text-justify"
+      >
         Startup Park is the world's first comprehensive ecosystem designed
         exclusively for entrepreneurs. We bridge the gap between ambitious ideas
         and market-ready solutions through integrated resources, strategic
@@ -141,7 +125,7 @@
   <div class="relative max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <h2
-        class="ttext-4xl merriweather-bold md:text-5xl font-bold    bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4"
+        class="ttext-4xl merriweather-bold md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4"
       >
         Why Startup Park
       </h2>
@@ -199,7 +183,9 @@
           <lucide-icon [name]="stat.icon" class="w-7 h-7"></lucide-icon>
         </div>
         <!-- Value -->
-        <div class="text-4xl font-extrabold text-primary mb-2 merriweather-bold">
+        <div
+          class="text-4xl font-extrabold text-primary mb-2 merriweather-bold"
+        >
           {{ stat.value }}
         </div>
         <!-- Label -->
@@ -223,19 +209,24 @@
     <div
       class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2 mb-6"
     >
-      <span class="text-sm font-medium text-primary montserrat">Featured Event</span>
+      <span class="text-sm font-medium text-primary montserrat"
+        >Featured Event</span
+      >
     </div>
-    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary merriweather-bold">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-6 text-primary merriweather-bold"
+    >
       {{ spotlightEvents[0].title }}
     </h2>
     <p class="text-xl text-slate-300 mb-8 leading-relaxed montserrat">
       {{ spotlightEvents[0].desc }}
     </p>
-    <a routerLink="/expo"
+    <a
+      routerLink="/expo"
       class="inline-flex items-center lato-normal bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition"
     >
       Reserve Your Spot
-  </a>
+    </a>
   </div>
 </section>
 
@@ -246,7 +237,9 @@
 >
   <div class="relative z-10 max-w-4xl mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6 merriweather-bold">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-primary mb-6 merriweather-bold"
+      >
         Ready to Transform Your Startup?
       </h2>
       <p class="text-xl text-gray-300 max-w-2xl mx-auto poppins-medium">

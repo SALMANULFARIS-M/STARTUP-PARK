@@ -1,6 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet, ViewTransitionInfo } from '@angular/router';
+import { RouterOutlet,  } from '@angular/router';
 import { UtilsService } from './shared/services/utils.service';
 import { AnalyticsService } from './shared/services/analytics.service';
 import { routeAnimations } from './shared/animation/route-animations';
@@ -9,7 +9,8 @@ import { routeAnimations } from './shared/animation/route-animations';
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  animations: [routeAnimations]
 })
 
 export class AppComponent implements OnInit, OnDestroy {
@@ -29,8 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
   }
-
-
 
   scrollToSection(sectionId: string) {
     if (isPlatformBrowser(this.platformId)) {
